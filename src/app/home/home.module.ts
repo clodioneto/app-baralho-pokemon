@@ -15,7 +15,9 @@ import { HomeRouteModule } from './home-route.module';
   ],
   imports: [
     HomeRouteModule,
-    CommonModule
+    CommonModule,
+
+
   ],
   exports: [
     HomeComponent,

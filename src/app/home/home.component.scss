@@ -1,6 +1,34 @@
-.teste {
-  background-image: url(/assets/img/banner-de-fundo-azul-perfeito-para-canva.jpg) !important;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.tela {
+  background-image: linear-gradient(rgba(10, 10, 10, 0.5), rgba(239, 239, 239, 0.927)), url(/assets/img/plano-fundo.jpg) !important;
 }
+
+.baralho{
+  background-image: url(/assets/img/pokemon.jpg) !important;
+}
+
+.modal-content{
+  background-color: rgb(221, 224, 221);
+}
+
+.btn{
+  border-radius: 20px;
+}
+
+.bem-vindo{
+  font-family: 'Cabin Sketch';font-size: 22px;
+  font-size: 80px;
+  font-weight: bold;
+}
+
+.modal-title{
+  font-family: 'Cabin Sketch';font-size: 22px;
+  color: rgb(247, 90, 90);
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.label-qtde{
+  font-size: 25px;
+}
+
+
