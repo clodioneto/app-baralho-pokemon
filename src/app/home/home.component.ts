@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('myModalClose') modalClose: any;
 
   ngOnInit(): void {
-
+  this.getListPokemon()
   }
 
   getApiPokemon(){
@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit {
       })
       this.listPokemon = this.pokemonData.data.slice(0, 250)
       this.listPokemon ? this.verBaralho() : null
+      console.log(this.listPokemon)
     })
 
   }

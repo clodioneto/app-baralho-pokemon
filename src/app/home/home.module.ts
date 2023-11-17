@@ -19,6 +19,7 @@ import { HomeRouteModule } from './home-route.module';
 
 
   ],
+  providers:[],
   exports: [
     HomeComponent,
   ]

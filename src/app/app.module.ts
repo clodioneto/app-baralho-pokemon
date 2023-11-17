@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
+import { PokemonService } from './services/pokemon.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -12,9 +14,11 @@ import { HomeModule } from './home/home.module';
   imports: [
     BrowserModule,
     AppRouteModule,
-    HomeModule
+    HomeModule,
+    HttpClientModule,
+    
   ],
-  providers: [],
+  providers: [PokemonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
