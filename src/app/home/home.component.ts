@@ -12,7 +12,7 @@ import { Pokemon } from '../models/pokemon.model';
 export class HomeComponent implements OnInit {
 
   iniciar: boolean = false;
-  baralho: boolean = false;
+  loadListCards: boolean = true;
 
   pokemonData: Ipokemon = {
     count: 0,
@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit {
   }
 
   criarBaralho(){
-    this.baralho = true;
 
     this.modalClose.nativeElement.click();
   }
@@ -59,8 +58,9 @@ export class HomeComponent implements OnInit {
         this.pokemonData.data.push(e)
       })
       this.listPokemon = this.pokemonData.data.slice(0, 250)
-      this.listPokemon ? this.verBaralho() : null
       console.log(this.listPokemon)
+      this.listPokemon ? this.loadListCards = false : this.loadListCards = true
+      
     })
 
   }
