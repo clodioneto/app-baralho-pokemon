@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { CartaComponent } from '../components/carta/carta.component';
 import { BaralhoComponent } from '../components/baralho/baralho.component';
 import { HomeRouteModule } from './home-route.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -16,6 +17,8 @@ import { HomeRouteModule } from './home-route.module';
   imports: [
     HomeRouteModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule
 
 
   ],

@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { LocalStorageService } from './../../services/local-storage.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ObjectCards } from 'src/app/home/home.component';
+import { Pokemon } from 'src/app/models/pokemon.model';
 
 @Component({
   selector: 'app-baralho',
@@ -8,9 +11,28 @@ import { Router } from '@angular/router';
 })
 export class BaralhoComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  cardList!: ObjectCards[];
+
+  constructor(private router: Router, private LocalStorage: LocalStorageService) { }
+
+
 
   ngOnInit(): void {
+    this.getCardList()
+  }
+
+  getCardList(){
+    this.cardList = this.LocalStorage.get('cards')
+    console.log(this.cardList)
+    /* this.myCards.forEach((e: any)=>{
+      this.cardsList = (Object.values(e.cardList))
+    })
+     */
+  }
+
+
+  verCartas(e: any){
+    this.router.navigate(['carta'], {queryParams:{e}})
   }
 
   voltar(){

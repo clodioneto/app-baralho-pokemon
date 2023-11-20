@@ -4,7 +4,13 @@ import { ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pokemon } from '../models/pokemon.model';
 import { LocalStorageService } from '../services/local-storage.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+export interface ObjectCards {
+  id: number;
+  name: string;
+  cardList: Pokemon[];
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,6 +20,8 @@ export class HomeComponent implements OnInit {
 
   iniciar: boolean = false;
   loadListCards: boolean = true;
+
+  numId: number = 0;
 
   pokemonData: Ipokemon = {
     count: 0,
@@ -25,23 +33,38 @@ export class HomeComponent implements OnInit {
 
   listPokemon: Pokemon[] = [];
 
-  listMyCards: any[] = [];
+  listMyCards: ObjectCards[] = [];
 
   myCards: any;
 
 
-  constructor(private router: Router, private pokemonService: PokemonService, private localStorage: LocalStorageService) {}
+
+
+
+
+  public formulario!: FormGroup;
+
+
+  constructor(private router: Router, private pokemonService: PokemonService, private localStorage: LocalStorageService, private fb: FormBuilder) {}
 
   @ViewChild('myModalClose') modalClose: any;
 
   ngOnInit(): void {
+    this.iniciarForm();
     this.localStorage.get('listCardPokemon') === null ? this.getListPokemon() : null
     this.myCards = this.localStorage.get('cards')
-    console.log(this.myCards)
+  }
+
+  iniciarForm(){
+    this.formulario = this.fb.group({
+      numCards: [null, Validators.required],
+      nameCards: [null, Validators.required]
+    })
+
   }
 
   getApiPokemon(){
-    
+
   }
 
   startCard(){
@@ -49,9 +72,34 @@ export class HomeComponent implements OnInit {
     return this.iniciar = true;
   }
 
-  criarBaralho(n: number){
-    this.getNewObjectCards(this.localStorage.get('listCardPokemon'), n)
-    this.modalClose.nativeElement.click();
+  get numCards(): FormGroup {
+    return this.formulario.get('numCards') as FormGroup;
+  }
+
+  get nameCards(): FormGroup {
+    return this.formulario.get('nameCards') as FormGroup;
+  }
+
+  cleanForm(){
+    this.formulario.patchValue({
+      numCards: "",
+      nameCards: ""
+    });
+  }
+
+
+  criarBaralho()
+  {
+    if(this.numCards.value >= 24 && this.numCards.value <= 60) {
+      this.getNewObjectCards(this.localStorage.get('listCardPokemon'), this.numCards.value, this.nameCards.value)
+      this.modalClose.nativeElement.click();
+      this.cleanForm();
+
+    } else {
+      this.cleanForm();
+      window.alert('A quantidade de cartas deve estar entre 24 e 60 unidades');
+    }
+
   }
 
   verBaralho(){
@@ -60,7 +108,6 @@ export class HomeComponent implements OnInit {
   }
 
   getListPokemon(){
-    console.log('teste')
     this.pokemonService.listAllPokemon.subscribe(p => {
       p.data.forEach((e) => {
         this.pokemonData.data.push(e)
@@ -71,8 +118,8 @@ export class HomeComponent implements OnInit {
 
   }
 
-  getNewObjectCards(data: Pokemon[], num: number){
-    let objectCards: any = {};
+  getNewObjectCards(data: Pokemon[], num: number, name: string){
+
     let i: number;
     let collectionNewCards: Pokemon[] = [];
     if(data){
@@ -81,21 +128,31 @@ export class HomeComponent implements OnInit {
         let randomElement = data[randomIndex]
         collectionNewCards.push(randomElement)
       }
-      
-  
-      this.getListMycards(collectionNewCards);
+      this.getListMycards(collectionNewCards, name);
     } return null
-    
-    
+
+
   }
 
-  getListMycards(arr: any){
-    this.listMyCards.push(arr)
+  getListMycards(arr: Pokemon[], name: string){
+    this.numId += 1
+    let objectCards: ObjectCards = {
+      id: this.numId,
+      name: "",
+      cardList: []
+    };
+    arr.map((e)=>{
+      objectCards.name = name
+      objectCards.cardList.push(e)
+    })
+    this.listMyCards.push(objectCards)
     this.localStorage.set('cards', this.listMyCards)
-    
-    
+    console.log(this.localStorage.get('cards'))
   }
 
+  voltar(){
+    this.iniciar = false;
+  }
 
 
 

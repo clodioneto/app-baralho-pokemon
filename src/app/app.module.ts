@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { PokemonService } from './services/pokemon.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRouteModule,
     HomeModule,
     HttpClientModule,
-    
+    FormsModule,
+    ReactiveFormsModule
+
   ],
   providers: [PokemonService],
   bootstrap: [AppComponent]
