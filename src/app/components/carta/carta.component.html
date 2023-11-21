@@ -1,25 +1,25 @@
-<div class="tela  bg-repeat -z-50">
+<div class="tela  bg-repeat min-h-screen -z-50">
   <div class="container p-8">
-    <div class="container grid grid-cols-4 gap-4 ">
-      <div class="container bg-transparent p-2 h-5/6 z-30" *ngFor="let item of cardList">
+    <div class="container grid sm:grid-cols-2 md:grid-cols-4 gap-4 ">
+      <div class="container bg-transparent p-2 h-5/6 z-30" *ngFor="let item of cardsList">
         <div class="rounded overflow-hidden shadow-lg bg-indigo-700" >
           <div class="div" >
             <img class="w-full" src={{item.images.large}} alt="Sunset in the mountains">
           </div>
           <div class="px-6 py-4">
             <div class="font-bold text-xl text-green-400 mb-2">{{item.name}}</div>
-            <p class="text-green-400 text-base">
+            <p class="text-green-400 text-base">{{item.flavorText}}
             </p>
           </div>
           <div class=" flex flex-col px-6 pt-4 pb-2">
             <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">VER DETALHES</button>
-            <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">EXCLUIR CARTA</button>
+            <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" (click)="excluirCartaById(item.id)">EXCLUIR CARTA</button>
           </div>
         </div>
       </div>
     </div>
     <div class="flex justify-center items-end bottom-2 mt-20">
-      <button type="button" class="absolute bg-red-600 hover:bg-red-700 text-white text-3xl py-2 px-4 rounded-full mt-36 z-0 ">SAIR</button>
+      <button type="button" class="absolute bg-red-600 hover:bg-red-700 text-white text-3xl py-2 px-4 rounded-full mt-36 z-0 " (click)="voltar()">VOLTAR</button>
     </div>
   </div>
 </div>

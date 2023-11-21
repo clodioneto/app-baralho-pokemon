@@ -37,12 +37,7 @@ export class HomeComponent implements OnInit {
 
   myCards: any;
 
-
-  
-
-
-
-  public formulario!: FormGroup;
+  formulario!: FormGroup;
 
 
   constructor(private router: Router, private pokemonService: PokemonService, private localStorage: LocalStorageService, private fb: FormBuilder) {}
@@ -139,7 +134,7 @@ export class HomeComponent implements OnInit {
     let objectCards: ObjectCards = {
       id: this.numId,
       name: "",
-      cardList: []
+      cardList: [],
     };
     arr.map((e)=>{
       objectCards.name = name
@@ -147,7 +142,7 @@ export class HomeComponent implements OnInit {
     })
     this.listMyCards.push(objectCards)
     this.localStorage.set('cards', this.listMyCards)
-    console.log(this.localStorage.get('cards'))
+    
   }
 
   voltar(){

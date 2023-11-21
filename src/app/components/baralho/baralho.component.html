@@ -1,6 +1,6 @@
-<div class="tela  bg-repeat -z-50">
+<div class="tela  bg-repeat min-h-screen -z-50">
   <div class="container p-8">
-    <div class="container grid grid-cols-4 gap-4 ">
+    <div class="container grid sm:grid-cols-2 md:grid-cols-4 gap-4 ">
       <div class="container bg-transparent p-2 h-5/6 z-30" *ngFor="let item of cardList">
         <div class="rounded overflow-hidden shadow-lg bg-indigo-700" >
           <div class="div" >
@@ -13,13 +13,36 @@
           </div>
           <div class="flex flex-col px-6 pt-4 pb-2">
             <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" (click)="verCartas(item.id)">VER CARTAS</button>
+            <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" data-bs-toggle="modal" data-bs-target="#editaPokaralho">EDITAR BARALHO</button>
             <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">EXCLUIR BARALHO</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="flex justify-center items-end bottom-2 mt-20">
-      <button type="button" class="absolute bg-red-600 hover:bg-red-700 text-white text-3xl py-2 px-4 rounded-full mt-36 z-0 "(click)="voltar()">SAIR</button>
+    <div class="flex flex-row justify-center items-end px-6 pt-4 pb-2 gap-4 mt-40">
+      <button type="button" class="bg-red-600 hover:bg-red-700 text-white text-3xl py-2 px-4 rounded-full mt-36 z-0 "(click)="voltar()">VOLTAR AO INICIO</button>
+    </div>
+    <div class="modal fade" id="editaPokaralho" tabindex="-1" aria-labelledby="editaPokaralho" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+        <form [formGroup]="formulario">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editaPokaralho">EDITAR POKARALHO</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="mb-3">
+                <label class="col-form-label label-qtde">Digite o nome do Pokaralho:</label>
+                <input type="text" formControlName="nameEdit" class="form-control" maxlength="20">
+              </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="bg-blue-900 hover:bg-blue-700 text-white text-2xl font-bold py-3 px-6 rounded-full" #myModalClose data-bs-dismiss="modal">Close</button>
+                <button type="button" class="bg-blue-900 hover:bg-blue-700 text-white text-2xl font-bold py-3 px-6 rounded-full" (click)="editarBaralho()">Editar Pokaralho</button>
+              </div>
+            </form>
+          </div>
+        </div>
     </div>
   </div>
 </div>

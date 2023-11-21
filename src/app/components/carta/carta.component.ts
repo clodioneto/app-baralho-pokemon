@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ObjectCards } from 'src/app/home/home.component';
 import { Pokemon } from 'src/app/models/pokemon.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -13,18 +13,16 @@ export class CartaComponent implements OnInit {
 
   argCarta: number = 0;
   allCards!: ObjectCards[];
-  cardList!: any
+  cardsList!: any
 
 
-  constructor(private route: ActivatedRoute, private LocalStorage: LocalStorageService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private LocalStorage: LocalStorageService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((e)=>{
      this.argCarta = +e.e;
-
     })
-
-    this. getCardList()
+    this.getCardList()
   }
 
   getCardList(){
@@ -32,13 +30,29 @@ export class CartaComponent implements OnInit {
     let cards = this.allCards.find((e)=>{
       return e.id === +this.argCarta;
     })
-    console.log(cards)
-    this.cardList = cards?.cardList
-    console.log(this.cardList)
+    this.cardsList = cards?.cardList
     }
 
+    voltar(){
+      this.router.navigate(['baralho'])
+    }
 
+    excluirCartaById(e: string){
+      if(this.cardsList.length <= 24){
+        window.alert('A quantidade de cartas deve estar entre 24 e 60 unidades');
+        } else {
+          this.cardsList = this.cardsList.filter((element: Pokemon)=>{
+          return element.id !== e
+        })
+      } 
+      this.allCards.forEach((v)=>{
+        v.cardList = this.cardsList
+      })
+      this.LocalStorage.set('cards', this.allCards)
+    }
   }
+
+
 
 
 

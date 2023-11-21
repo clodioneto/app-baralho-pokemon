@@ -138,6 +138,6 @@ export class ISetImage{
 }
 
 export class Iimages {
-    "symbol"?: string;
-    "logo"?: string;
+    symbol?: string;
+    logo?: string;
 }
