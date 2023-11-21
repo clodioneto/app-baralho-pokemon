@@ -1,46 +1,53 @@
 <div class="tela bg-cover min-h-screen -z-50" >
   <div class="flex flex-col justify-center items-center text-center h-screen">
-    <p class=" text-white text-6xl bg-yellow-500 font-bold mb-20 bem-vindo rounded-full p-10" *ngIf="!iniciar">BEM VINDO AO POKARALHO</p>
-    <p class=" text-black text-5xl font-bold mb-20 " *ngIf="!iniciar">O seu baralho POKEMON</p>
-    <button type="button" class="bg-purple-700 hover:bg-purple-500 text-white text-4xl font-bold py-10 px-20 rounded-full"(click)="startCard()" *ngIf="!iniciar">INICIAR</button>
-    <div class="container absolute bg-black h-5/6 z-30 filter opacity-40" *ngIf="iniciar"></div>
-    <div class="baralho absolute bg-cover container h-5/6 filter opacity-80 z-10" *ngIf="iniciar">
-    </div>
-    <div class="container absolute flex flex-col md:flex-row gap-y-10 justify-center items-end space-x-4 h-10 z-50" *ngIf="iniciar">
-      <button type="button" class="bg-yellow-500 hover:bg-yellow-300 text-white text-4xl font-bold py-10 px-20 rounded-full" data-bs-toggle="modal" data-bs-target="#modalPokaralho" [disabled]="loadListCards" [ngClass]="{'btnDisabled': loadListCards === true}">NOVO POKARALHO</button>
-      <button type="button" class="bg-purple-700 hover:bg-purple-400 text-white text-4xl font-bold py-10 px-20 rounded-full " (click)="verBaralho()" [disabled]="loadListCards" [ngClass]="{'btnDisabled': loadListCards === true}">SEUS POKARALHOS</button>
-      <div class="absolute  flex justify-center items-center space-x-4 h-10 z-50">
-        <p class=" text-white flex text-6xl font-bold mb-20 bem-vindo rounded-full p-10" *ngIf="loadListCards">LOADING...</p>
+      <p class=" text-white text-6xl bg-yellow-500 font-bold mb-20 bem-vindo rounded-full p-10" *ngIf="!iniciar">BEM VINDO AO POKARALHO</p>
+      <p class=" text-black text-5xl font-bold mb-20 " *ngIf="!iniciar">O seu baralho POKEMON</p>
+      <button type="button" class="bg-purple-700 hover:bg-purple-500 text-white text-4xl font-bold py-10 px-20 rounded-full"(click)="startCard()" *ngIf="!iniciar">INICIAR</button>
+      <div class="container absolute bg-black h-5/6 z-30 filter opacity-40" *ngIf="iniciar"></div>
+      <div class="baralho absolute bg-cover container h-5/6 filter opacity-80 z-10" *ngIf="iniciar">
       </div>
-    </div>
-    <button type="button" class="absolute bg-red-400 hover:bg-red-700 text-white text-3xl py-2 px-4 rounded-full z-40 bottom-40" *ngIf="iniciar" (click)="voltar()">VOLTAR</button>
+      <div class="container absolute flex flex-col md:flex-row gap-y-10 justify-center items-end space-x-4 h-10 z-50" *ngIf="iniciar">
+        <button type="button" class="bg-yellow-500 hover:bg-yellow-300 text-white text-4xl font-bold py-10 px-20 rounded-full" data-bs-toggle="modal" data-bs-target="#modalPokaralho" [disabled]="loadListCards" [ngClass]="{'btnDisabled': loadListCards === true}">NOVO POKARALHO</button>
+        <button type="button" class="bg-purple-700 hover:bg-purple-400 text-white text-4xl font-bold py-10 px-20 rounded-full " (click)="verBaralho()" [disabled]="loadListCards" [ngClass]="{'btnDisabled': loadListCards === true}">SEUS POKARALHOS</button>
+        <div class="absolute  flex justify-center items-center space-x-4 h-10 z-50">
+          <p class=" text-white flex text-6xl font-bold mb-20 bem-vindo rounded-full p-10" *ngIf="loadListCards">LOADING...</p>
+        </div>
+      </div>
+<button type="button" class="absolute bg-red-400 hover:bg-red-700 text-white text-3xl py-2 px-4 rounded-full z-40 bottom-40" *ngIf="iniciar" (click)="voltar()">VOLTAR</button>
 
-        <div class="modal fade" id="modalPokaralho" tabindex="-1" aria-labelledby="modalPokaralho" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-              <form [formGroup]="formulario">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="modalPokaralho">CRIAR POKARALHO</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                      <label class="col-form-label label-qtde">Escolha a quantidade de cartas:</label>
-                      <input type="text" class="form-control inputNumber" formControlName="numCards" maxlength="2" [placeholder]="'Inserir valor entre 24 e 60 cartas'">
+      <div class="modal fade" id="modalPokaralho" tabindex="-1" aria-labelledby="modalPokaralho" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+<form [formGroup]="formulario">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalPokaralho">CRIAR POKARALHO</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label class="col-form-label label-qtde">Escolha a quantidade de cartas:</label>
+                  <input type="text" class="form-control inputNumber" formControlName="numCards" maxlength="2" [placeholder]="'Inserir valor entre 24 e 60 cartas'">
                     </div>
                     <div class="mb-3">
                       <label class="col-form-label label-qtde">Digite o nome do Pokaralho:</label>
                       <input type="text" formControlName="nameCards" class="form-control" maxlength="20">
-                    </div>
+</div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="bg-blue-900 hover:bg-blue-700 text-white text-2xl font-bold py-3 px-6 rounded-full" #myModalClose data-bs-dismiss="modal">Close</button>
                   <button type="button" class="bg-blue-900 hover:bg-blue-700 text-white text-2xl font-bold py-3 px-6 rounded-full" (click)="criarBaralho()" >Criar Pokaralho</button>
                 </div>
+
               </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="bg-red-600 hover:bg-red-400 text-white text-2xl font-bold py-3 px-6 rounded-full" #myModalClose data-bs-dismiss="modal">Close</button>
+              <button type="button" class="bg-yellow-300 hover:bg-yellow-400 text-white text-2xl font-bold py-3 px-6 rounded-full" (click)="criarBaralho(30)">Criar pokaralho</button>
             </div>
           </div>
         </div>
+      </div>
   </div>
 </div>
 <!-- <app-baralho *ngIf="baralhoComponent" [myCards]="myCards"></app-baralho> -->

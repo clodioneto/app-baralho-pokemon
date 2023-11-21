@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
   myCards: any;
 
 
-
+  
 
 
 
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
     this.iniciarForm();
     this.localStorage.get('listCardPokemon') === null ? this.getListPokemon() : null
     this.myCards = this.localStorage.get('cards')
-  }
+    }
 
   iniciarForm(){
     this.formulario = this.fb.group({
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
   }
 
   getApiPokemon(){
-
+    
   }
 
   startCard(){
@@ -109,11 +109,11 @@ export class HomeComponent implements OnInit {
 
   getListPokemon(){
     this.pokemonService.listAllPokemon.subscribe(p => {
-      p.data.forEach((e) => {
-        this.pokemonData.data.push(e)
-      })
-      this.listPokemon = this.pokemonData.data.slice(0, 250)
-      this.localStorage.set('listCardPokemon', this.listPokemon)
+    p.data.forEach((e) => {
+      this.pokemonData.data.push(e)
+    })
+    this.listPokemon = this.pokemonData.data.slice(0, 250)
+    this.localStorage.set('listCardPokemon', this.listPokemon)
     })
 
   }
