@@ -25,3 +25,42 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Arquitetura utilizada
+
+Angular CLI: 14.2.13
+Node: 18.13.0 (Unsupported)
+Package Manager: npm 8.1.0
+OS: win32 x64
+
+Angular:
+...
+
+Package                      Version
+------------------------------------------------------
+@angular-devkit/architect    0.1402.13 (cli-only)
+@angular-devkit/core         14.2.13 (cli-only)
+@angular-devkit/schematics   14.2.13 (cli-only)
+@schematics/angular          14.2.13 (cli-only)
+
+## Dependencias da aplicação
+
+TailwindCss - v2.2.19
+NgxBootstrap - v0.0.1
+Bootstrap - v5.3.2
+Electron - v27.0.4
+
+## Outras Bibliotecas
+
+Reactive Forms
+RXJS
+
+## Scripts
+
+"ng": "ng",
+"start": "ng serve",
+"build": "ng build",
+"watch": "ng build --watch --configuration development",
+"test": "ng test",
+"electron": "electron .",
+"electron-build": "ng build && electron ."
