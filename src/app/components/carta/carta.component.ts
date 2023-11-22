@@ -51,6 +51,7 @@ export class CartaComponent implements OnInit {
       }
       this.allCards.forEach((v)=>{
         v.cardList = this.cardsList
+        v.cardLength--
       })
       this.LocalStorage.set('cards', this.allCards)
     }

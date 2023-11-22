@@ -23,6 +23,25 @@ export class BaralhoComponent implements OnInit{
 
   cardLength: number = 0;
 
+  nomeBaralho!: string;
+
+  id!: number;
+
+  newCard!: Pokemon[];
+
+  nameCardEdit!: string;
+
+  trinador!: string[];
+
+  pokemonArray!: Pokemon[];
+  pokemonLength!: number;
+
+  treinadorArray!: Pokemon[];
+  treinadorLength!: number;
+
+  listColors: any;
+
+
   constructor(private router: Router, private localStorage: LocalStorageService, private fb: FormBuilder) { }
 
   @ViewChild('myModalClose') modalClose: any;
@@ -30,8 +49,6 @@ export class BaralhoComponent implements OnInit{
   ngOnInit(): void {
     this.getCardList()
     this.iniciarForm()
-
-
   }
 
   getCardLenght(cardList: ObjectCards[], objectCards: ObjectCards){
@@ -42,6 +59,7 @@ export class BaralhoComponent implements OnInit{
 
   getCardList(){
     this.cardList = this.localStorage.get('cards')
+
   }
 
 
@@ -62,9 +80,7 @@ export class BaralhoComponent implements OnInit{
 
   }
 
-  editarBaralho(){
 
-  }
 
   excluirBaralho(e: number){
         this.cardList = this.cardList.filter((element: ObjectCards)=>{
@@ -86,24 +102,55 @@ export class BaralhoComponent implements OnInit{
     return this.formulario.get('nameCards') as FormGroup;
   }
 
+
+
   cleanForm(){
     this.formulario.patchValue({
       numCards: "",
-      nameCards: ""
+      nameCards: "",
+      nameEdit:""
     });
   }
+
 
   criarBaralho(){
     if(this.numCards.value >= 24 && this.numCards.value <= 60) {
       this.getNewObjectCards(this.localStorage.get('listCardPokemon'), this.numCards.value, this.nameCards.value)
+      this.nameCardEdit = this.nameCards.value
       this.modalClose.nativeElement.click();
       this.cleanForm();
-
     } else {
       this.cleanForm();
       window.alert('A quantidade de cartas deve estar entre 24 e 60 unidades');
     }
 
+  }
+
+  editarBaralho(e:number){
+    this.id = e
+  }
+
+  confirmarEditar(){
+    this.cardList.forEach((element: ObjectCards)=>{
+
+      if (element.id == this.id){
+          element.name = this.nameEdit.value
+      }
+    })
+    this.localStorage.set('cards', this.cardList)
+    this.modalClose.nativeElement.click();
+    this.cleanForm();
+  }
+
+  inserirCarta(){
+    this.newCard = this.localStorage.get('listCardPokemon').splice(0, 1)
+      this.newCard.forEach((n)=>{
+        this.cardList.forEach((c)=>{
+          c.cardList.push(n)
+          c.cardLength++
+        })
+      })
+      this.localStorage.set('cards', this.cardList)
   }
 
   getNewObjectCards(data: Pokemon[], num: number, name: string){
@@ -118,8 +165,8 @@ export class BaralhoComponent implements OnInit{
       this.getListMyCards(collectionNewCards, name);
     }
 
-
   }
+
 
   getListMyCards(arr: Pokemon[], name: string){
     this.numId += 1
@@ -135,10 +182,19 @@ export class BaralhoComponent implements OnInit{
     })
 
     this.cardList.push(objectCards)
+    this.cardList.forEach((c)=>{
+      this.pokemonArray = c.cardList.filter((element) => element.supertype == "Pokémon")
+    })
+    this.cardList.forEach((c)=>{
+      this.treinadorArray = c.cardList.filter((element) => element.supertype != "Pokémon")
+    })
+    let cores = this.cardList.reduce((acc, card) => acc = card)
+    this.pokemonLength = this.pokemonArray.length
+    this.treinadorLength = this.treinadorArray.length
     this.getCardLenght(this.cardList, objectCards)
     this.localStorage.set('cards', this.cardList)
-
-    console.log(this.cardList)
-
   }
+
+
 }
+
