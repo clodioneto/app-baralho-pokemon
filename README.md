@@ -29,7 +29,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Arquitetura utilizada
 
 Angular CLI: 14.2.13
-Node: 18.13.0 (Unsupported)
+Node: 18.13.0 
 Package Manager: npm 8.1.0
 OS: win32 x64
 
