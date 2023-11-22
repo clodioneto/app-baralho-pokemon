@@ -16,6 +16,7 @@ export class CartaComponent implements OnInit {
   cardsList!: any
 
 
+
   constructor(private router: Router, private route: ActivatedRoute, private LocalStorage: LocalStorageService) { }
 
   ngOnInit(): void {
@@ -23,7 +24,10 @@ export class CartaComponent implements OnInit {
      this.argCarta = +e.e;
     })
     this.getCardList()
+
   }
+
+
 
   getCardList(){
     this.allCards = this.LocalStorage.get('cards')
@@ -39,12 +43,12 @@ export class CartaComponent implements OnInit {
 
     excluirCartaById(e: string){
       if(this.cardsList.length <= 24){
-        window.alert('A quantidade de cartas deve estar entre 24 e 60 unidades');
+        window.alert('A quantidade de cartas não deve ser inferior a 24 unidades');
         } else {
           this.cardsList = this.cardsList.filter((element: Pokemon)=>{
           return element.id !== e
         })
-      } 
+      }
       this.allCards.forEach((v)=>{
         v.cardList = this.cardsList
       })

@@ -1,4 +1,8 @@
 <div class="tela  bg-repeat min-h-screen -z-50">
+  <div class="fixed flex flex-col justify-center items-start py-10 px-6">
+    <button type="button" class="bg-red-600 hover:bg-red-700 text-white text-3xl py-2 px-4 rounded-full z-0 mb-10" data-bs-toggle="modal" data-bs-target="#modalPokaralho">NOVO POKARALHO</button>
+    <button type="button" class="bg-red-600 hover:bg-red-700 text-white text-3xl py-2 px-4 rounded-full z-0 "(click)="voltar()">VOLTAR AO INICIO</button>
+  </div>
   <div class="container p-8">
     <div class="container grid sm:grid-cols-2 md:grid-cols-4 gap-4 ">
       <div class="container bg-transparent p-2 h-5/6 z-30" *ngFor="let item of cardList">
@@ -7,22 +11,46 @@
             <img class="w-full" src="./assets/img/4k-pokemon.jpg" alt="Sunset in the mountains">
           </div>
           <div class="px-6 py-4">
-            <div class="font-bold text-xl text-green-400 mb-2">{{item.name}}</div>
-            <p class="text-green-400 text-base">
+            <div class="font-bold text-4xl text-green-400 mb-2">{{item.name}}</div>
+            <p class="text-pink-500 text-base text-6xl">{{item.cardLength}}
             </p>
           </div>
           <div class="flex flex-col px-6 pt-4 pb-2">
-            <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" (click)="verCartas(item.id)">VER CARTAS</button>
-            <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" data-bs-toggle="modal" data-bs-target="#editaPokaralho">EDITAR BARALHO</button>
-            <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">EXCLUIR BARALHO</button>
+            <button class="font-bold  text-xl inline-block bg-gray-200  hover:bg-gray-300 rounded-full px-3 py-1  text-gray-700 mr-2 mb-2" (click)="verCartas(item.id)">VER CARTAS</button>
+            <button class="font-bold  text-xl inline-block bg-gray-200  hover:bg-gray-300 rounded-full px-3 py-1  text-gray-700 mr-2 mb-2" data-bs-toggle="modal" data-bs-target="#editaPokaralho">EDITAR BARALHO</button>
+            <button class="font-bold  text-xl inline-block bg-gray-200  hover:bg-gray-300 rounded-full px-3 py-1  text-gray-700 mr-2 mb-2" (click)="excluirBaralho(item.id)">EXCLUIR BARALHO</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="flex flex-row justify-center items-end px-6 pt-4 pb-2 gap-4 mt-40">
-      <button type="button" class="bg-red-600 hover:bg-red-700 text-white text-3xl py-2 px-4 rounded-full mt-36 z-0 "(click)="voltar()">VOLTAR AO INICIO</button>
+    <div class="modal fade" id="modalPokaralho" tabindex="-1" aria-labelledby="modalPokaralho" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <form [formGroup]="formulario">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalPokaralho">CRIAR POKARALHO</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                  <label class="col-form-label label-qtde">Escolha a quantidade de cartas:</label>
+                  <input type="text" class="form-control inputNumber" formControlName="numCards" maxlength="2" [placeholder]="'Inserir valor entre 24 e 60 cartas'">
+                </div>
+                <div class="mb-3">
+                  <label class="col-form-label label-qtde">Digite o nome do Pokaralho:</label>
+                  <input type="text" formControlName="nameCards" class="form-control" maxlength="12">
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="bg-blue-900 hover:bg-blue-700 text-white text-2xl font-bold py-3 px-6 rounded-full" #myModalClose data-bs-dismiss="modal">Close</button>
+              <button type="button" class="bg-blue-900 hover:bg-blue-700 text-white text-2xl font-bold py-3 px-6 rounded-full" (click)="criarBaralho()">Criar Pokaralho</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="modal fade" id="editaPokaralho" tabindex="-1" aria-labelledby="editaPokaralho" aria-hidden="true">
+
+    <!-- <div class="modal fade" id="editaPokaralho" tabindex="-1" aria-labelledby="editaPokaralho" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
         <form [formGroup]="formulario">
@@ -43,8 +71,10 @@
             </form>
           </div>
         </div>
-    </div>
+    </div> -->
+
   </div>
+
 </div>
 
 

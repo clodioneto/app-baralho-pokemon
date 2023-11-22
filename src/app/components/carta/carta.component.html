@@ -7,13 +7,12 @@
             <img class="w-full" src={{item.images.large}} alt="Sunset in the mountains">
           </div>
           <div class="px-6 py-4">
-            <div class="font-bold text-xl text-green-400 mb-2">{{item.name}}</div>
-            <p class="text-green-400 text-base">{{item.flavorText}}
-            </p>
+            <div class="font-bold text-4xl text-green-500 mb-2">{{item.name}}</div>
+            <p class="text-green-400 text-base">
           </div>
           <div class=" flex flex-col px-6 pt-4 pb-2">
-            <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">VER DETALHES</button>
-            <button class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" (click)="excluirCartaById(item.id)">EXCLUIR CARTA</button>
+            <button class="font-bold  text-xl inline-block bg-gray-200  hover:bg-gray-300 rounded-full px-3 py-1  text-gray-700 mr-2 mb-2">VER DETALHES</button>
+            <button class="font-bold  text-xl inline-block bg-gray-200  hover:bg-gray-300 rounded-full px-3 py-1  text-gray-700 mr-2 mb-2" (click)="excluirCartaById(item.id)">EXCLUIR CARTA</button>
           </div>
         </div>
       </div>
