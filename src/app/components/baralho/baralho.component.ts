@@ -180,7 +180,7 @@ export class BaralhoComponent implements OnInit{
       objectCards.name = name
       objectCards.cardList.push(e)
     })
-
+    this.cardList = [];
     this.cardList.push(objectCards)
     this.cardList.forEach((c)=>{
       this.pokemonArray = c.cardList.filter((element) => element.supertype == "Pokémon")
@@ -188,7 +188,6 @@ export class BaralhoComponent implements OnInit{
     this.cardList.forEach((c)=>{
       this.treinadorArray = c.cardList.filter((element) => element.supertype != "Pokémon")
     })
-    let cores = this.cardList.reduce((acc, card) => acc = card)
     this.pokemonLength = this.pokemonArray.length
     this.treinadorLength = this.treinadorArray.length
     this.getCardLenght(this.cardList, objectCards)
