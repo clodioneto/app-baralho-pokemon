@@ -39,7 +39,6 @@ export class BaralhoComponent implements OnInit{
   treinadorArray!: Pokemon[];
   treinadorLength!: number;
 
-  listColors: any;
 
 
   constructor(private router: Router, private localStorage: LocalStorageService, private fb: FormBuilder) { }
@@ -62,7 +61,6 @@ export class BaralhoComponent implements OnInit{
 
   }
 
-
   verCartas(e: any){
     this.router.navigate(['carta'], {queryParams:{e}})
   }
@@ -80,14 +78,12 @@ export class BaralhoComponent implements OnInit{
 
   }
 
-
-
   excluirBaralho(e: number){
-        this.cardList = this.cardList.filter((element: ObjectCards)=>{
-        return element.id !== +e
-      })
+    this.cardList = this.cardList.filter((element: ObjectCards)=>{
+    return element.id !== +e
+    })
 
-      this.localStorage.set('cards', this.cardList)
+    this.localStorage.set('cards', this.cardList)
   }
 
   get nameEdit(): FormGroup {
@@ -102,8 +98,6 @@ export class BaralhoComponent implements OnInit{
     return this.formulario.get('nameCards') as FormGroup;
   }
 
-
-
   cleanForm(){
     this.formulario.patchValue({
       numCards: "",
@@ -111,7 +105,6 @@ export class BaralhoComponent implements OnInit{
       nameEdit:""
     });
   }
-
 
   criarBaralho(){
     if(this.numCards.value >= 24 && this.numCards.value <= 60) {
@@ -167,7 +160,6 @@ export class BaralhoComponent implements OnInit{
 
   }
 
-
   getListMyCards(arr: Pokemon[], name: string){
     this.numId += 1
     let objectCards: ObjectCards = {
@@ -193,7 +185,6 @@ export class BaralhoComponent implements OnInit{
     this.getCardLenght(this.cardList, objectCards)
     this.localStorage.set('cards', this.cardList)
   }
-
 
 }
 
